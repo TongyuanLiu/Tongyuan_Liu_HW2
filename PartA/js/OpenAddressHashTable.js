@@ -98,7 +98,52 @@ export default class OpenAddressHashTable {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     putValue(key, item) {
-        
+        // if size == length, and there is no key-value pairs with the same keys
+        // then double the length and rehash
+        if(this.size === this.length && this.noSameKey(key)){
+            // update length of hashTable and create new hashTable
+            this.length *= 2;
+            let tempHashTable = [];
+            for(let i = 0; i < this.length; i++){
+                tempHashTable[i] = null;
+            }
+
+            // copy key-value pairs from old hashTable to new hashTable
+            for(let i = 0; i < this.size; i++){
+                let index = this.hashCode(this.hashTable[i].key);
+                while(1){
+                    if(tempHashTable[index] === null){
+                        tempHashTable[index] = this.hashTable[i]
+                        break;
+                    }
+                    index = (index + 1) % this.length;
+                }
+            }
+
+            // delete old hashtable
+            this.hashTable = tempHashTable;
+        }
+
+        // if size < length, insert key-pair
+        // OR size == length, and there is key-value pairs with the same key
+        let index = this.hashCode(key);
+        while(1){
+            // if hashTable[index] is null, insert key-value pair
+            if(this.hashTable[index] === null){
+                this.hashTable[index] = new KeyValuePair(key, item);
+                this.size++;
+                return;
+            }
+
+            // if hashTable[index] has the same key value, replace item
+            if(this.hashTable[index].key === key){
+                this.hashTable[index].value = item;
+                return;
+            }
+
+            // linear probing
+            index = (index + 1) % this.length;
+        }
     }
     
     toString() {
