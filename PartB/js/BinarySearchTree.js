@@ -53,7 +53,7 @@ export default class BinarySearchTree {
             }else if(key < cursor.key){
                 if(cursor.left === null){
                     // insert node, then return
-                    let temp = new Node(key, data, null, null, null);
+                    let temp = new Node(key, value, null, null, null);
                     cursor.left = temp;
                     this.size++;
                     return;
@@ -64,7 +64,7 @@ export default class BinarySearchTree {
             }else if(key > cursor.key){
                 if(cursor.right === null){
                     // insert node, then return
-                    let temp = new Node(key, data, null, null, null);
+                    let temp = new Node(key, value, null, null, null);
                     cursor.right = temp;
                     this.size++;
                     return;
