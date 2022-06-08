@@ -36,7 +36,44 @@ export default class BinarySearchTree {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     putValue(key, value) {
+        // if tree is empty
+        if(this.root === null){
+            this.root = new Node(key, value, null, null, null);
+            this.size++;
+            return;
+        }
 
+        // if tree is not empty
+        let cursor = this.root;
+        while(1){
+            if(key === cursor.key){
+                // replace data, then return
+                cursor.data = value;
+                return;
+            }else if(key < cursor.key){
+                if(cursor.left === null){
+                    // insert node, then return
+                    let temp = new Node(key, data, null, null, null);
+                    cursor.left = temp;
+                    this.size++;
+                    return;
+                }else{
+                    // move cursor to left child
+                    cursor = cursor.left;
+                }
+            }else if(key > cursor.key){
+                if(cursor.right === null){
+                    // insert node, then return
+                    let temp = new Node(key, data, null, null, null);
+                    cursor.right = temp;
+                    this.size++;
+                    return;
+                }else{
+                    // move cursor to right child
+                    cursor = cursor.right;
+                }
+            }
+        }
     }
 
     // @todo - YOU MUST DEFINE THIS METHOD
