@@ -40,12 +40,14 @@ hashTable.putValue(dgKey, new Employee(dgKey, "David", "Gilmour", 120000));
 printHashTable("\nAfter Changing 3 Items", hashTable);
 
 // DEMONSTRATE GETTING VALUES FROM THE HASH TABLE
+console.log("-----------------------------------------");
 let p = hashTable.getValue(jlKey);
 console.log("\nget " + jlKey + ": " + p.toString() + "\n");
 p = hashTable.getValue(cwKey);
 console.log("\nget " + cwKey + ": " + p.toString() + "\n");
 p = hashTable.getValue(dgKey);
 console.log("\nget " + dgKey + ": " + p.toString() + "\n");
+console.log("-----------------------------------------");
 
 // NOW LET'S TRY REPLACING THE DATA IN THE ABOVE THREE
 hashTable.putValue(jlKey, new Student(jlKey, "Otis", "Redding", 3.5));
