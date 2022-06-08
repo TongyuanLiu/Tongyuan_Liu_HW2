@@ -78,6 +78,18 @@ export default class BinarySearchTree {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     getValue(key) {
+        let cursor = this.root;
+        while(cursor !== null){
+            if(key < cursor.key){
+                // move to left child
+                cursor = cursor.left;
+            }else if(key > cursor.key){
+                // move to right child
+                cursor = cursor.right;
+            }else{
+                return cursor.data;
+            }
+        }
         return null;
     }
 
